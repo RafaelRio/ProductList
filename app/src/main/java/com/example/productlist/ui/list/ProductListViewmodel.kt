@@ -10,7 +10,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
+import java.io.IOException
 import javax.inject.Inject
+import kotlin.coroutines.cancellation.CancellationException
 
 @HiltViewModel
 class ProductListViewmodel @Inject constructor(
@@ -30,18 +33,30 @@ class ProductListViewmodel @Inject constructor(
         viewModelScope.launch {
             showOnlySmartphones.collectLatest {
                 _loadingState.value = true
-                _list.value = getProducts(it)
+                _list.value = getProducts(it) ?: emptyList()
                 _loadingState.value = false
             }
         }
     }
 
-    private suspend fun getProducts(showOnlySmartphones: Boolean): List<Product> {
-        return if(!showOnlySmartphones) {
-            plRepo.getAllProducts().productList
-        } else {
-            plRepo.getSmartPhones().productList
+    private suspend fun getProducts(showOnlySmartphones: Boolean): List<Product>? {
+        try {
+            return if(!showOnlySmartphones) {
+                plRepo.getAllProducts().productList
+            } else {
+                plRepo.getSmartPhones().productList
+            }
+        }catch (e: IOException) {
+            e.printStackTrace()
+        } catch (e: HttpException) {
+            e.printStackTrace()
+        } catch (e: CancellationException) {
+            throw e
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
+        return null
+
     }
 
     fun setFilterActive(active: Boolean) {

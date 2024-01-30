@@ -6,12 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import androidx.datastore.preferences.core.edit
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import com.example.productlist.R
 import com.example.productlist.databinding.FragmentListProductsBinding
+import com.example.productlist.ui.login.dataStore
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -41,6 +47,7 @@ class ProductsListFragment: Fragment() {
         lifecycleScope.launch {
             plViewModel.loadingState.flowWithLifecycle(lifecycle).collectLatest {
                 binding.pbLoading.isVisible = it
+                binding.btnAddProduct.isGone = it
             }
         }
     }
@@ -60,15 +67,23 @@ class ProductsListFragment: Fragment() {
         binding.cbRemember.setOnCheckedChangeListener { _, isChecked ->
             plViewModel.setFilterActive(isChecked)
         }
-//        binding.tv.setOnClickListener {
-//            lifecycleScope.launch(Dispatchers.IO) {
-//                requireContext().dataStore.edit {
-//                    it.clear()
-//                    requireActivity().finish()
-//                }
-//            }
-//        }
+        binding.btnCloseSession.setOnClickListener {
+            closeSession()
+        }
+        binding.btnAddProduct.setOnClickListener {
+            findNavController().navigate(R.id.action_productsListFragment_to_addProductFragment)
+        }
 
+    }
+
+    private fun closeSession() {
+        // Se hace con el Dispatchers.IO porque así no bloquea el hilo principal
+        lifecycleScope.launch(Dispatchers.IO) {
+            requireContext().dataStore.edit {
+                it.clear()
+                requireActivity().finish()
+            }
+        }
     }
 
     private fun setupList() {

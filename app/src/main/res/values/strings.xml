@@ -9,4 +9,12 @@
     <string name="stock">Stock:</string>
     <string name="show_smartphones">Show only smartphones</string>
     <string name="add_product">Add product</string>
+    <string name="product_name">Product name</string>
+    <string name="product_description">Product description</string>
+    <string name="product_price">Product price</string>
+    <string name="product_rating">Product rating</string>
+    <string name="product_stock">Product stock</string>
+    <string name="product_brand">Product brand</string>
+    <string name="product_category">Product category</string>
+    <string name="product_discount_percentage">Product discount percentage</string>
 </resources>
