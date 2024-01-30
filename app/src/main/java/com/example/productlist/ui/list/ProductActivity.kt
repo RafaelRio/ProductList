@@ -11,6 +11,13 @@ class ProductActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_products)
+    }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        //Uso esta forma porque cuando estoy en la segunda Activity al darle hacia atrás no quiero volver al Login
+        finish()
+        moveTaskToBack(true)
     }
 }
