@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.productlist.data.Product
 import com.example.productlist.databinding.FragmentAddProductBinding
+import com.example.productlist.ui.productDetail.SeeProductDetailsFragment
 import com.example.productlist.utils.isNotZero
 import com.example.productlist.utils.onTextChanged
 import com.example.productlist.utils.parseDouble
@@ -72,7 +73,8 @@ class AddProductFragment: Fragment() {
                     val addedProduct = addProductViewmodel.addProduct(product!!)
 
                     if (addedProduct != null && checkFields()) {
-                        Toast.makeText(requireContext(), addedProduct.thumbnail, Toast.LENGTH_SHORT).show()
+                        val deatilDialog = SeeProductDetailsFragment(addedProduct)
+                        deatilDialog.show(requireActivity().supportFragmentManager, "detail_dialog")
                     } else {
                         Toast.makeText(requireContext(), "MAL", Toast.LENGTH_SHORT).show()
                     }

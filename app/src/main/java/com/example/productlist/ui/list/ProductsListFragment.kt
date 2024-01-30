@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.productlist.R
 import com.example.productlist.databinding.FragmentListProductsBinding
 import com.example.productlist.ui.login.dataStore
+import com.example.productlist.ui.productDetail.SeeProductDetailsFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
@@ -25,7 +26,10 @@ import kotlinx.coroutines.launch
 class ProductsListFragment: Fragment() {
 
     private lateinit var binding: FragmentListProductsBinding
-    private val plListAdapter = ProductListAdapter()
+    private val plListAdapter = ProductListAdapter { product ->
+        val detailDialog = SeeProductDetailsFragment(product)
+        detailDialog.show(requireActivity().supportFragmentManager, "detail_dialog")
+    }
     private lateinit var plViewModel: ProductListViewmodel
 
     override fun onCreate(savedInstanceState: Bundle?) {
