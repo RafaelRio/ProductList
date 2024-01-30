@@ -7,7 +7,7 @@
 
     <style name="Theme.ProductList" parent="Base.Theme.ProductList" />
 
-    <style name="PM_TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+    <style name="TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColorHint">#990D003B</item>
         <item name="boxCornerRadiusTopStart">11dp</item>
@@ -16,7 +16,7 @@
         <item name="boxCornerRadiusBottomEnd">11dp</item>
         <item name="android:layout_marginHorizontal">20dp</item>
         <item name="errorTextColor">#99F44A4A</item>
-        <item name="errorTextAppearance">@style/PM_TextInputLayoutTextAppearance</item>
+        <item name="errorTextAppearance">@style/TextInputLayoutTextAppearance</item>
         <item name="errorIconDrawable">@null</item>
         <item name="boxStrokeErrorColor">@color/red_light</item>
         <item name="passwordToggleTint">@color/black</item>
@@ -27,17 +27,27 @@
         <item name="hintEnabled">false</item>
     </style>
 
-    <style name="PM_TextInputLayoutTextAppearance">
+    <style name="TextInputLayoutTextAppearance">
         <item name="android:textSize">0sp</item>
         <item name="android:letterSpacing">-0.03</item>
     </style>
 
-    <style name="PM_LoginTextInputEditText">
+    <style name="LoginTextInputEditText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">48dp</item>
         <item name="android:backgroundTint">@color/white</item>
         <item name="android:textSize">15sp</item>
         <item name="android:letterSpacing">-0.03</item>
         <item name="android:textColorHint">#990D003B</item>
+    </style>
+
+    <style name="CircularAppearanceOverlay">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="CircularImage">
+        <item name="android:scaleType">centerCrop</item>
+        <item name="shapeAppearanceOverlay">@style/CircularAppearanceOverlay</item>
     </style>
 </resources>

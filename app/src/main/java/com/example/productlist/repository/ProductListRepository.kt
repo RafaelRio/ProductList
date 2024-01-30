@@ -15,6 +15,10 @@ class ProductListRepository @Inject constructor(
     }
 
     suspend fun getAllProducts(): ProductsResponse {
-        return plApi.getAllProducts(limit = Constants.LIST_SIZE)
+        return plApi.getAllProducts()
+    }
+
+    suspend fun getSmartPhones(): ProductsResponse {
+        return plApi.getSmartPhones()
     }
 }

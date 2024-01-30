@@ -7,6 +7,7 @@ import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ProductListApi {
 
@@ -17,8 +18,9 @@ interface ProductListApi {
         @Field("password") password: String,
     ): UserResponse
 
-    @GET("products?limit={limit}")
-    suspend fun getAllProducts(
-        @Path("limit") limit: Int
-    ): ProductsResponse
+    @GET("products?limit=50")
+    suspend fun getAllProducts(): ProductsResponse
+
+    @GET("products/category/smartphones")
+    suspend fun getSmartPhones(): ProductsResponse
 }

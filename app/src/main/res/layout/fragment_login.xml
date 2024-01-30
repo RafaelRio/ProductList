@@ -32,27 +32,27 @@
                 android:textSize="30sp"/>
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/PM_TextInputLayout"
+                style="@style/TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_marginTop="20dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etUsername"
-                    style="@style/PM_LoginTextInputEditText"
+                    style="@style/LoginTextInputEditText"
                     android:hint="@string/user"
                     android:inputType="textEmailAddress"
                     android:singleLine="false" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/PM_TextInputLayout"
+                style="@style/TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_marginTop="15dp"
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etPassword"
-                    style="@style/PM_LoginTextInputEditText"
+                    style="@style/LoginTextInputEditText"
                     android:hint="@string/password"
                     android:inputType="textPassword"
                     android:singleLine="false" />
