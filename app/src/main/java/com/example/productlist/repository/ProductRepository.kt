@@ -7,24 +7,24 @@ import com.example.productlist.data.UserResponse
 import com.example.productlist.utils.Constants
 import javax.inject.Inject
 
-class ProductListRepository @Inject constructor(
-    private val plApi: ProductListApi,
+class ProductRepository @Inject constructor(
+    private val productAPI: ProductListApi,
 ) {
 
     suspend fun login(userName: String, password: String): UserResponse {
-        return plApi.login(username = userName, password = password)
+        return productAPI.login(username = userName, password = password)
     }
 
     suspend fun getAllProducts(): ProductsResponse {
-        return plApi.getAllProducts()
+        return productAPI.getAllProducts()
     }
 
     suspend fun getSmartPhones(): ProductsResponse {
-        return plApi.getProductByCategory(category = Constants.SMARTPHONE)
+        return productAPI.getProductByCategory(category = Constants.SMARTPHONE)
     }
 
     suspend fun addProduct(product: Product): Product {
-        return plApi.addProduct(
+        return productAPI.addProduct(
             title = product.title,
             description = product.description,
             price = product.price,

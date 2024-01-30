@@ -1,10 +1,9 @@
 package com.example.productlist.ui.list
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.viewModelScope
 import com.example.productlist.data.Product
-import com.example.productlist.repository.ProductListRepository
+import com.example.productlist.repository.ProductRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -17,8 +16,8 @@ import kotlin.coroutines.cancellation.CancellationException
 
 @HiltViewModel
 class ProductListViewmodel @Inject constructor(
-    private val plRepo: ProductListRepository
-): ViewModel() {
+    private val plRepo: ProductRepository
+) : ViewModel() {
 
     private val _list = MutableStateFlow<List<Product>>(emptyList())
     val list = _list.asStateFlow()
@@ -41,12 +40,12 @@ class ProductListViewmodel @Inject constructor(
 
     private suspend fun getProducts(showOnlySmartphones: Boolean): List<Product>? {
         try {
-            return if(!showOnlySmartphones) {
+            return if (!showOnlySmartphones) {
                 plRepo.getAllProducts().productList
             } else {
                 plRepo.getSmartPhones().productList
             }
-        }catch (e: IOException) {
+        } catch (e: IOException) {
             e.printStackTrace()
         } catch (e: HttpException) {
             e.printStackTrace()

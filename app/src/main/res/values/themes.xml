@@ -15,10 +15,6 @@
         <item name="boxCornerRadiusBottomStart">11dp</item>
         <item name="boxCornerRadiusBottomEnd">11dp</item>
         <item name="android:layout_marginHorizontal">20dp</item>
-        <item name="errorTextColor">#99F44A4A</item>
-        <item name="errorTextAppearance">@style/TextInputLayoutTextAppearance</item>
-        <item name="errorIconDrawable">@null</item>
-        <item name="boxStrokeErrorColor">@color/red_light</item>
         <item name="passwordToggleTint">@color/black</item>
         <item name="passwordToggleDrawable">@drawable/selector_password</item>
         <item name="boxStrokeWidth">1dp</item>

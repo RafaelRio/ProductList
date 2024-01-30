@@ -24,8 +24,8 @@ class LoginActivity : AppCompatActivity() {
         }
 
         lifecycleScope.launch(Dispatchers.IO) {
-            remember.collectLatest {
-                if (it) {
+            remember.collectLatest { remember ->
+                if (remember) {
                     startActivity(Intent(this@LoginActivity, ProductActivity::class.java))
                 }
             }

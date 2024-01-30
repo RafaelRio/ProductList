@@ -16,10 +16,10 @@ inline fun TextView.onTextChanged(
 fun Double.isNotZero(): Boolean {
     return this != 0.0
 }
+
 fun Int.isNotZero(): Boolean {
     return this != 0
 }
-
 
 
 /*

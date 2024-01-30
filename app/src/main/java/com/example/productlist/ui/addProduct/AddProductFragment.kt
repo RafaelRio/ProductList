@@ -5,12 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.productlist.data.Product
 import com.example.productlist.databinding.FragmentAddProductBinding
 import com.example.productlist.ui.productDetail.SeeProductDetailsFragment
@@ -21,17 +22,24 @@ import com.example.productlist.utils.parseInt
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-
 @AndroidEntryPoint
-class AddProductFragment: Fragment() {
+class AddProductFragment : Fragment() {
 
     private lateinit var binding: FragmentAddProductBinding
     private lateinit var addProductViewmodel: AddProductViewModel
     private var product: Product? = null
+    private lateinit var onBackPressedCallback: OnBackPressedCallback
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         addProductViewmodel = ViewModelProvider(this)[AddProductViewModel::class.java]
+        onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().navigateUp()
+            }
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
     }
 
     override fun onCreateView(
@@ -46,6 +54,12 @@ class AddProductFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initUI()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // Elimina el callback cuando la actividad se destruye para evitar fugas de memoria
+        onBackPressedCallback.remove()
     }
 
     private fun initUI() {
@@ -76,7 +90,7 @@ class AddProductFragment: Fragment() {
                         val deatilDialog = SeeProductDetailsFragment(addedProduct)
                         deatilDialog.show(requireActivity().supportFragmentManager, "detail_dialog")
                     } else {
-                        Toast.makeText(requireContext(), "MAL", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "Error when creating product", Toast.LENGTH_SHORT).show()
                     }
                 }
             }

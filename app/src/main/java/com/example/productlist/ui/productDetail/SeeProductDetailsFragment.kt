@@ -17,7 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SeeProductDetailsFragment(
     val product: Product
-): DialogFragment() {
+) : DialogFragment() {
 
     private lateinit var binding: FragmentSeeProductDetailsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,14 +61,22 @@ class SeeProductDetailsFragment(
     private fun fillData() {
         binding.apply {
             ivProduct.load(product.thumbnail)
-            tvProductName.text = "${requireContext().getString(R.string.product_name)}: ${product.title}"
-            tvProductDescription.text = "${requireContext().getString(R.string.product_description)}: ${product.description}"
-            tvProductPrice.text = "${requireContext().getString(R.string.product_price)}: ${product.price}"
-            tvProductDiscount.text = "${requireContext().getString(R.string.product_discount_percentage)}: ${product.discountPercentage}"
-            tvProductRating.text = "${requireContext().getString(R.string.product_rating)}: ${product.rating}"
-            tvProductStock.text = "${requireContext().getString(R.string.product_stock)}: ${product.stock}"
-            tvProductBrand.text = "${requireContext().getString(R.string.product_brand)}: ${product.brand}"
-            tvProductCategory.text = "${requireContext().getString(R.string.product_category)}: ${product.category}"
+            tvProductName.text =
+                "${requireContext().getString(R.string.product_name)}: ${product.title}"
+            tvProductDescription.text =
+                "${requireContext().getString(R.string.product_description)}: ${product.description}"
+            tvProductPrice.text =
+                "${requireContext().getString(R.string.product_price)}: ${product.price}"
+            tvProductDiscount.text =
+                "${requireContext().getString(R.string.product_discount_percentage)}: ${product.discountPercentage}"
+            tvProductRating.text =
+                "${requireContext().getString(R.string.product_rating)}: ${product.rating}"
+            tvProductStock.text =
+                "${requireContext().getString(R.string.product_stock)}: ${product.stock}"
+            tvProductBrand.text =
+                "${requireContext().getString(R.string.product_brand)}: ${product.brand}"
+            tvProductCategory.text =
+                "${requireContext().getString(R.string.product_category)}: ${product.category}"
         }
     }
 }

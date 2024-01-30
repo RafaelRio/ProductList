@@ -1,7 +1,6 @@
 package com.example.productlist.ui.list
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -40,7 +39,8 @@ class ProductListAdapter(
                 tvProductName.text = product.title
                 tvProductDescription.text = product.description
                 tvPrice.text = "${this.root.context.getString(R.string.price)} ${product.price}€"
-                tvStock.text = "${this.root.context.getString(R.string.stock)} ${product.stock} uds."
+                tvStock.text =
+                    "${this.root.context.getString(R.string.stock)} ${product.stock} uds."
             }
         }
     }

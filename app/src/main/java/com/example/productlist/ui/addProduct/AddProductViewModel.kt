@@ -2,7 +2,7 @@ package com.example.productlist.ui.addProduct
 
 import androidx.lifecycle.ViewModel
 import com.example.productlist.data.Product
-import com.example.productlist.repository.ProductListRepository
+import com.example.productlist.repository.ProductRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -13,8 +13,8 @@ import kotlin.coroutines.cancellation.CancellationException
 
 @HiltViewModel
 class AddProductViewModel @Inject constructor(
-    private val plRepo: ProductListRepository
-): ViewModel() {
+    private val productRepository: ProductRepository
+) : ViewModel() {
 
     private val _productImage = MutableStateFlow("")
     val productImage = _productImage.asStateFlow()
@@ -43,13 +43,21 @@ class AddProductViewModel @Inject constructor(
     private val _productCategory = MutableStateFlow("")
     val productCategory = _productCategory.asStateFlow()
 
-    fun setImage(image: String) { _productImage.value = image }
+    fun setImage(image: String) {
+        _productImage.value = image
+    }
 
-    fun setTitle(title: String) { _productTitle.value = title }
+    fun setTitle(title: String) {
+        _productTitle.value = title
+    }
 
-    fun setDescription(description: String) { _productDescription.value = description }
+    fun setDescription(description: String) {
+        _productDescription.value = description
+    }
 
-    fun setPrice(price: Double) { _productPrice.value = price }
+    fun setPrice(price: Double) {
+        _productPrice.value = price
+    }
 
     fun setDiscountPercentage(discount: Double) {
         //Entiendo que el descuento no puede estar por encima del 100. Si lo ponen por encima, lo acoto yo
@@ -61,16 +69,22 @@ class AddProductViewModel @Inject constructor(
         _productRating.value = if (rating > 10.0) 10.0 else rating
     }
 
-    fun setStock(stock: Int) { _productStock.value = stock }
+    fun setStock(stock: Int) {
+        _productStock.value = stock
+    }
 
-    fun setBrand(brand: String) { _productBrand.value = brand }
+    fun setBrand(brand: String) {
+        _productBrand.value = brand
+    }
 
-    fun setCategory(category: String) { _productCategory.value = category }
+    fun setCategory(category: String) {
+        _productCategory.value = category
+    }
 
 
     suspend fun addProduct(product: Product): Product? {
         try {
-            return plRepo.addProduct(product)
+            return productRepository.addProduct(product)
         } catch (e: IOException) {
             e.printStackTrace()
         } catch (e: HttpException) {

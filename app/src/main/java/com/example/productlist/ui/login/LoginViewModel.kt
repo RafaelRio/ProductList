@@ -2,7 +2,7 @@ package com.example.productlist.ui.login
 
 import androidx.lifecycle.ViewModel
 import com.example.productlist.data.UserResponse
-import com.example.productlist.repository.ProductListRepository
+import com.example.productlist.repository.ProductRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -13,7 +13,7 @@ import kotlin.coroutines.cancellation.CancellationException
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val plRepo: ProductListRepository,
+    private val plRepo: ProductRepository,
 ) : ViewModel() {
 
     private val _userName = MutableStateFlow("")
@@ -30,7 +30,7 @@ class LoginViewModel @Inject constructor(
         _password.value = password
     }
 
-    suspend fun login(userName: String, password: String) : UserResponse? {
+    suspend fun login(userName: String, password: String): UserResponse? {
         try {
             return plRepo.login(userName = userName, password = password)
         } catch (e: IOException) {

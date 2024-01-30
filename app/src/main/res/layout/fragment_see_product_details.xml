@@ -1,73 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_weight="1"
     android:layout_height="match_parent"
+    android:layout_weight="1"
     android:orientation="vertical">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingHorizontal="50dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivProduct"
+            style="@style/CircularImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/ic_no_image" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductName"
+            style="@style/TextViewDetail"
             android:layout_width="match_parent"
-            android:paddingHorizontal="50dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_height="wrap_content" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/ivProduct"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                style="@style/CircularImage"
-                android:layout_marginTop="30dp"
-                android:src="@drawable/ic_no_image"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductDescription"
+            style="@style/TextViewDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvProductName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/TextViewDetail"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductPrice"
+            style="@style/TextViewDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvProductDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/TextViewDetail"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductDiscount"
+            style="@style/TextViewDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvProductPrice"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/TextViewDetail"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductRating"
+            style="@style/TextViewDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvProductDiscount"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/TextViewDetail"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductStock"
+            style="@style/TextViewDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvProductRating"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/TextViewDetail"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductBrand"
+            style="@style/TextViewDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvProductStock"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/TextViewDetail"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductCategory"
+            style="@style/TextViewDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvProductBrand"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/TextViewDetail"/>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvProductCategory"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/TextViewDetail"/>
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
