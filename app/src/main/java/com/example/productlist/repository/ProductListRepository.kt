@@ -19,6 +19,6 @@ class ProductListRepository @Inject constructor(
     }
 
     suspend fun getSmartPhones(): ProductsResponse {
-        return plApi.getSmartPhones()
+        return plApi.getProductByCategory(category = Constants.SMARTPHONE)
     }
 }

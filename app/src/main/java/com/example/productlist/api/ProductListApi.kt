@@ -21,6 +21,8 @@ interface ProductListApi {
     @GET("products?limit=50")
     suspend fun getAllProducts(): ProductsResponse
 
-    @GET("products/category/smartphones")
-    suspend fun getSmartPhones(): ProductsResponse
+    @GET("products/category/{category}")
+    suspend fun getProductByCategory(
+        @Path("category") category: String
+    ): ProductsResponse
 }

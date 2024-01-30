@@ -1,31 +1,50 @@
 package com.example.productlist.ui.list
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.viewModelScope
 import com.example.productlist.data.Product
 import com.example.productlist.repository.ProductListRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ProductListViewmodel @Inject constructor(
-    val plRepo: ProductListRepository
+    private val plRepo: ProductListRepository
 ): ViewModel() {
 
-    var list = mutableListOf<Product>()
+    private val _list = MutableStateFlow<List<Product>>(emptyList())
+    val list = _list.asStateFlow()
 
-    private val _filterCategory = MutableStateFlow(false)
-    val filterCategory = _filterCategory.asStateFlow()
-    suspend fun getAllProducts() {
-        list = plRepo.getAllProducts().productList.toMutableList()
+    private val _showOnlySmartphones = MutableStateFlow(false)
+    val showOnlySmartphones = _showOnlySmartphones.asStateFlow()
+
+    private val _loadingState = MutableStateFlow(false)
+    val loadingState = _loadingState.asStateFlow()
+
+    init {
+        viewModelScope.launch {
+            showOnlySmartphones.collectLatest {
+                _loadingState.value = true
+                _list.value = getProducts(it)
+                _loadingState.value = false
+            }
+        }
     }
 
-    suspend fun getSmartPhones() {
-        list = plRepo.getSmartPhones().productList.toMutableList()
+    private suspend fun getProducts(showOnlySmartphones: Boolean): List<Product> {
+        return if(!showOnlySmartphones) {
+            plRepo.getAllProducts().productList
+        } else {
+            plRepo.getSmartPhones().productList
+        }
     }
 
     fun setFilterActive(active: Boolean) {
-        _filterCategory.value = active
+        _showOnlySmartphones.value = active
     }
 }

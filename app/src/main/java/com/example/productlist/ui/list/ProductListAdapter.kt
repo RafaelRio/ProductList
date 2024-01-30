@@ -13,8 +13,6 @@ import com.example.productlist.data.Product
 import com.example.productlist.databinding.ItemProductBinding
 
 class ProductListAdapter(
-    private val context: Context,
-    private val itemClickListener: (item: Product) -> Unit,
 ) : ListAdapter<Product, ProductListAdapter.ViewHolder>(
     object : DiffUtil.ItemCallback<Product>() {
         override fun areItemsTheSame(oldItem: Product, newItem: Product) = oldItem.id == newItem.id
@@ -33,7 +31,6 @@ class ProductListAdapter(
         val item = getItem(position)
 
         item?.also { product ->
-            holder.itemView.setOnClickListener { itemClickListener(item) }
 
             holder.binding.apply {
                 //La carga de imágenes se realiza con la librería Coil
@@ -41,9 +38,8 @@ class ProductListAdapter(
 
                 tvProductName.text = product.title
                 tvProductDescription.text = product.description
-                tvPrice.text = "${context.applicationContext.getString(R.string.price)} ${product.price}€"
-                tvStock.text = "${context.applicationContext.getString(R.string.stock)} ${product.stock} uds."
-
+                tvPrice.text = "${this.root.context.getString(R.string.price)} ${product.price}€"
+                tvStock.text = "${this.root.context.getString(R.string.stock)} ${product.stock} uds."
             }
         }
     }

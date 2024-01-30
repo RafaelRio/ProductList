@@ -13,6 +13,12 @@
         android:text="@string/show_smartphones"
         android:layout_marginHorizontal="20dp"/>
 
+    <ProgressBar
+        android:id="@+id/pbLoading"
+        style="@style/ProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="16dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvProductList"
         android:layout_width="match_parent"

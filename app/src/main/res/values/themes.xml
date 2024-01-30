@@ -50,4 +50,11 @@
         <item name="android:scaleType">centerCrop</item>
         <item name="shapeAppearanceOverlay">@style/CircularAppearanceOverlay</item>
     </style>
+
+    <style name="ProgressBar" parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:indeterminate">true</item>
+        <item name="android:indeterminateTint">@color/primaryColor</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">16dp</item>
+    </style>
 </resources>
