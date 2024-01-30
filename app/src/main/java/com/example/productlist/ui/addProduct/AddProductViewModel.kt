@@ -3,6 +3,7 @@ package com.example.productlist.ui.addProduct
 import androidx.lifecycle.ViewModel
 import com.example.productlist.data.Product
 import com.example.productlist.repository.ProductListRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import retrofit2.HttpException
@@ -10,6 +11,7 @@ import java.io.IOException
 import javax.inject.Inject
 import kotlin.coroutines.cancellation.CancellationException
 
+@HiltViewModel
 class AddProductViewModel @Inject constructor(
     private val plRepo: ProductListRepository
 ): ViewModel() {
@@ -49,15 +51,22 @@ class AddProductViewModel @Inject constructor(
 
     fun setPrice(price: Double) { _productPrice.value = price }
 
-    fun setDiscountPercentage(discount: Double) { _productDiscountPercentage.value = discount }
+    fun setDiscountPercentage(discount: Double) {
+        //Entiendo que el descuento no puede estar por encima del 100. Si lo ponen por encima, lo acoto yo
+        _productDiscountPercentage.value = if (discount > 100.0) 100.0 else discount
+    }
 
-    fun setRating(rating: Double) { _productRating.value = rating }
+    fun setRating(rating: Double) {
+        //Pasa igual que con el descuento pero con valor sobre 10
+        _productRating.value = if (rating > 10.0) 10.0 else rating
+    }
 
     fun setStock(stock: Int) { _productStock.value = stock }
 
     fun setBrand(brand: String) { _productBrand.value = brand }
 
     fun setCategory(category: String) { _productCategory.value = category }
+
 
     suspend fun addProduct(product: Product): Product? {
         try {

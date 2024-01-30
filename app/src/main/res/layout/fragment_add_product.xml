@@ -99,7 +99,7 @@
                     android:id="@+id/etProductStock"
                     style="@style/LoginTextInputEditText"
                     android:hint="@string/product_stock"
-                    android:inputType="numberDecimal"
+                    android:inputType="number"
                     android:singleLine="false" />
             </com.google.android.material.textfield.TextInputLayout>
 

@@ -32,7 +32,7 @@ interface ProductListApi {
     ): ProductsResponse
 
     @FormUrlEncoded
-    @POST
+    @POST("products/add")
     suspend fun addProduct(
         @Field("id") id: Int = 200,
         @Field("title") title: String,
